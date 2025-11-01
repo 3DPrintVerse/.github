@@ -1,78 +1,127 @@
-# 3D-PrintVerse – MVP Architekturübersicht
+# 🧩 3D-PrintVerse
 
-## 🔍 Oberfläche (eine zentrale UI)
+---
 
-* **Public Shop (Gast möglich):** Katalog → Konfiguration (Material, Farbe, Infill) → Warenkorb → Checkout.
-* **Upload-Plattform (Login Pflicht):** Upload `.stl` → Konfiguration → "Zur Prüfung einreichen" → Angebot im Konto.
-* **Konto-Bereich:** Angebote annehmen/ablehnen, Bestellstatus, Rechnungen, Kommunikation.
-* **Admin-Dashboard:** Aufträge/Angebote, Dateien, Katalog, Materialien, SLAs/Zeitfenster, Mail-Templates.
+## 📘 Projektbeschreibung
 
-## 📦 Backstage-Domänen (Services)
+**3D-PrintVerse** ist ein modulares System zur Verwaltung, Automatisierung und Durchführung von 3D-Druck-Aufträgen.
+Das Ziel ist die Entwicklung einer skalierbaren Softwareplattform mit Microservice-Architektur, bestehend aus:
 
-1. **Identity & Accounts** – Registrierung, Login, Rollen.
-2. **Catalog & Config** – Produkte, Varianten, Material-/Farboptionen.
-3. **Upload & Files** – Dateiupload, Format-Check (MVP: nur `.stl`), Ablage.
-4. **Quotation (Angebote)** – Manuelle Prüfung, Preisfindung, Gültigkeit, Annahme/Ablehnung.
-5. **Orders** – Bestellung (mehrere Dateien pro Order), Zahlung nach Annahme, Statuslauf.
-6. **Production (später)** – Slicing, Drucker-Queue, Auslastung.
-7. **Notifications** – E-Mails, Templates mit Platzhaltern.
-8. **Shipping (später)** – Versandlabel, Tracking.
-9. **Inventory (später)** – Materialien, Verfügbarkeiten.
-10. **Analytics/Reporting (später)** – Durchlaufzeiten, Kostenübersicht.
+* Frontends für Kunden und Administratoren
+* API Gateway / BFF als zentrales Entry-Point
+* Domain-spezifischen Backend-Services
+* Asynchroner Kommunikation über RabbitMQ
+* Persistenz über PostgreSQL und MinIO Object Storage
 
-## 🔹 Zentrale Objektlogik
+---
 
-* **User** → hat **Orders**.
-* **Order** → umfasst 1..n **OrderItems** (Datei + Konfiguration).
-* **Quote** → entsteht aus Upload+Konfig, wird **zur Order**, wenn Kunde annimmt.
-* **Statuslauf:** Eingegangen → In Prüfung → Angebot bereit → In Produktion → QS → Versandt.
+## 🏗️ Architekturüberblick (MVP – V1.0)
 
-## 🔄 End-to-End-Flows
+### Hauptkomponenten
 
-### A) Katalogkauf (MVP)
+| Typ          | Komponente          | Beschreibung                                |
+|--------------|---------------------|---------------------------------------------|
+| **Frontend** | Customer Web App    | Shop + Upload-Funktion                      |
+| **Frontend** | Admin Dashboard     | Verwaltung, manuelle Prüfung & Statuspflege |
+| **Gateway**  | API Gateway / BFF   | Einheitlicher Zugang zu allen Services      |
+| **Service**  | Identity & Auth     | Authentifizierung, Rollen, Sessions         |
+| **Service**  | Catalog & Config    | Produktkatalog & Materialkonfiguration      |
+| **Service**  | Upload              | Upload-Management & Validierung             |
+| **Service**  | File (MinIO)        | Dateiablage & Zugriff auf 3D-Modelle        |
+| **Service**  | Quote               | Angebotserstellung & Verwaltung             |
+| **Service**  | Order               | Bestellungen & Statusverlauf                |
+| **Service**  | Payment             | Zahlungsabwicklung (Basis)                  |
+| **Service**  | Notification / Mail | Mailversand über RabbitMQ                   |
+| **Infra**    | RabbitMQ            | Event-Bus zur asynchronen Kommunikation     |
+| **Infra**    | MariaDB             | Zentrale Datenbank                          |
+| **Infra**    | MinIO               | Object Storage für 3D-Dateien               |
 
-1. Produkt wählen → konfigurieren → Gast/Login → Checkout.
-2. Admin setzt Status manuell (Produktion/QS/Versand).
-3. Kunde erhält automatische Mails bei Statuswechseln.
+---
 
-### B) Upload-Kauf (MVP)
+## ⚙️ Entwicklungsumgebung
 
-1. Login → `.stl` hochladen → konfigurieren → "Zur Prüfung".
-2. Admin/Prüfer checkt Datei & Machbarkeit, trägt **Preis + Lieferfenster** ein → System sendet **Angebots-Mail**.
-3. Kunde nimmt im Konto an → **Order entsteht**, Zahlung jetzt.
-4. Produktion manuell (G-Code, Druckstart, QS, Versand), Status manuell gepflegt → Auto-Mails.
+### Voraussetzungen
 
-## 🔗 MVP vs. Wachstum
+* Docker / Docker Compose
+* Node.js & npm / pnpm
+* Java mit SpringBoot (für Backend-Services)
+* RabbitMQ
+* MariaDB
+* MinIO
 
-### MVP (manuell, klar, kontrolliert)
+### Lokales Setup
 
-* Upload nur `.stl`.
-* Angebot & Preis **manuell**.
-* Statuswechsel **manuell**, Mails **automatisch**.
-* Produktion & G-Code **manuell**.
-* Zeitfenster **im Admin einstellbar**.
+```bash
+# 1. Repository klonen
+git clone <INTERNAL_REPO_URL> 
 
-### V2–V3 (gezielte Automatisierung)
+# 2. Services starten (Docker)
+docker compose up -d
 
-* **Auto-Validierung:** Geometrie-Checks.
-* **Auto-Pricing:** Regeln (Volumen/Druckzeit/Material).
-* **Auto-Status & Ereignisse:** Ereignisbasierte Workflows.
-* **Slicing-Service:** G-Code-Erzeugung.
-* **Printer-Queue:** Auftragszuweisung, Re-Print bei Fehler.
-* **Shipping-Service:** Label, Tracking.
-* **Inventory:** Materialverfügbarkeit.
+# 3. Frontends starten (Dev-Modus)
+cd frontend-customer && npm run dev
+cd frontend-admin && npm run dev
+```
 
-### Zukunft (skalierbar)
+### Umgebungsvariablen
 
-* **Multi-Site / Farm-Routing.**
-* **APIs/Partner-Integrationen.**
-* **Community-/Marktplatz-Erweiterungen.**
-* **Technik-Ansicht optional.**
+Jeder Service hat eine `.env`-Datei, z. B.:
 
-## 🕵️ Prinzipien
+```env
+POSTGRES_URL=postgresql://user:pass@db:5432/printverse
+MINIO_URL=http://minio:9000
+RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+JWT_SECRET=<PLACEHOLDER>
+SMTP_SERVER=<PLACEHOLDER>
+```
 
-* **Ein UI, viele Services.**
-* **Schrittweise Automation.**
-* **Mensch bleibt eingreifbar.**
-* **Transparenz ohne Overload.**
-* **Skalierbarkeit mitgedacht.**
+---
+
+## 🔁 Kommunikationsprinzipien
+
+* **HTTP →** synchron über das API Gateway
+* **RabbitMQ ⇢** asynchron für Statusänderungen & Events
+* **Mail-Service ⇢** Event-Driven (z. B. `QuoteReady`, `OrderStatusChanged`)
+
+---
+
+## 🧪 Tests & Qualitätssicherung
+
+```bash
+# Unit Tests
+npm run test
+
+# Integration Tests
+docker compose -f docker-compose.test.yml up --build
+```
+
+---
+
+## 🚀 Deployment
+
+### Staging
+
+```bash
+docker compose -f docker-compose.staging.yml up -d
+```
+
+### Production (Beispiel)
+
+```bash
+kubectl apply -f k8s/
+```
+
+> Platzhalter: `TODO: CI/CD Workflow beschreiben (GitHub Actions, ArgoCD, Jenkins etc.)`
+
+---
+
+## 📅 Versionierung
+
+| Version        | Inhalt                                                             |
+|----------------|--------------------------------------------------------------------|
+| **V1.0 (MVP)** | Manuelle Prozesse, Kernlogik & Upload-Funktion                     |
+| **V2.0+**      | Erste Automatisierungsschritte (Validierung, Preisberechnung etc.) |
+
+---
+
+> 🛠️ *Internal Developer Documentation – last updated: 01.11.2025*
