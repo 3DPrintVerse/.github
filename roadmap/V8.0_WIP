@@ -1,0 +1,100 @@
+# 🗺️ Roadmap – Version 8.0 (Zukunft & Erweiterungen)
+
+## 🎯 Ziel
+
+Nach Abschluss der vollständigen Automatisierung in V7.0 öffnet sich mit **Version 8.0** die Perspektive für zukünftige Funktionen, Services und Erweiterungen, die den Shop zu einer umfassenden **3D-Druck-Softwarewelt** weiterentwickeln.
+Diese Version dient der Sammlung und Bewertung möglicher Ideen – keine fest definierten Meilensteine, sondern **Überlegungen und Visionen** für die Weiterentwicklung.
+
+---
+
+## 💡 Überlegungen & Zukunftsideen
+
+### 🌍 **1. Erweiterung zur Plattform / Community-Funktionen**
+
+* Öffnung des Systems für externe Designer und Maker.
+* **3D-Modell-Marktplatz**: Nutzer können eigene Designs hochladen, verkaufen oder teilen.
+* Bewertungssystem, Kommentare und Follow-Funktion für Designer.
+* Integration einer Lizenzverwaltung (z. B. CC, kommerzielle Nutzung).
+
+---
+
+### 🤝 **2. Partner- und API-Integration**
+
+* Bereitstellung einer **öffentlichen API**, damit andere Plattformen Aufträge direkt einreichen können.
+* Kooperationen mit **CAD-Software-Herstellern** (z. B. Fusion 360, Blender, Onshape) für Direkt-Uploads.
+* Automatisierte Auftragsübernahme über **Webhook- oder Plugin-Schnittstellen**.
+
+---
+
+### 🧠 **3. Intelligente Automatisierung & KI-Integration**
+
+* **KI-gestützte Modellanalyse** zur Verbesserung der Druckbarkeit (z. B. automatische Stützstrukturen, Materialvorschläge).
+* **Smart-Pricing**: dynamische Preisbildung basierend auf Auslastung, Nachfrage und Materialkosten.
+* KI-gestützte Vorhersage von **Druckfehlern** oder Wartungsbedarf anhand von Drucker-Telemetrie.
+
+---
+
+### 🪄 **4. Nutzererlebnis & Interaktion**
+
+* **3D-Webviewer** im Browser mit Live-Vorschau, Skalierung, Drehung und Simulation von Druckzeiten.
+* **Interaktive Anpassungen** (z. B. Gravuren, Maße, einfache Modellbearbeitung).
+* AR-Integration: Vorschau des Objekts in der realen Umgebung via Smartphone.
+* Erweiterte Statusmeldungen mit Echtzeit-Fortschritt und visuellen Darstellungen.
+
+---
+
+### 🏭 **5. Skalierung & Produktion**
+
+* Unterstützung von **mehreren Produktionsstandorten** oder externen Druckpartnern (verteiltes Routing).
+* Intelligente **Lastverteilung** über verschiedene Druck-Farmen.
+* Integration von **automatischer Lagerhaltung** und **Materialnachbestellung**.
+* Erweiterung auf CNC, Lasercut oder Resin-Fertigungsverfahren.
+
+---
+
+### 📊 **6. Business- & Analytics-Erweiterungen**
+
+* Detailliertes **Business-Dashboard** mit Echtzeitstatistiken (Aufträge, Umsätze, Durchlaufzeiten, Erfolgsquoten).
+* **Kostenanalyse pro Drucker, Material, Kunde oder Region**.
+* Automatische KPI-Berichte (z. B. wöchentliche Effizienzreports, Auslastungstrends).
+* Export-Schnittstellen zu Buchhaltungs- oder ERP-Systemen.
+
+---
+
+### 🌱 **7. Nachhaltigkeit & Umweltbewusstsein**
+
+* Materialtracking nach ökologischen Kriterien (Recyclingquote, CO₂-Bilanz).
+* Option für Kunden, **nachhaltige Druckoptionen** zu wählen.
+* Integration von **CO₂-Kompensation** in Bestellprozesse.
+
+---
+
+### 🧩 **8. Erweiterte Automatisierung & Robotik**
+
+* Integration von **Roboterarmen oder Pick-&-Place-Systemen** für automatisches Entladen und Sortieren von Drucken.
+* Automatische **Druckbett-Reinigung und Neubestückung**.
+* Echtzeit-Steuerung mehrerer Drucker über Smart-Controller.
+
+---
+
+### 🚀 **9. Internationalisierung & Multi-Mandantenfähigkeit**
+
+* Mehrsprachige Oberfläche und **Währungsunterstützung**.
+* **Multi-Mandanten-System** für verschiedene Marken oder Standorte.
+* Zentrale Administration mit regionalen Subsystemen.
+
+---
+
+### 🔮 **10. Langfristige Vision: 3D-PrintVerse Ecosystem**
+
+* Aufbau einer offenen **3D-Druck-Weltplattform**, die Design, Fertigung, Logistik und Community vereint.
+* Kombination aus Shop, API, Cloud-Printing und Collaboration.
+* Vision: **„From idea to reality – fully automated, globally connected.“**
+
+---
+
+### ✅ **Ergebnis V8.0**
+
+* Sammlung und Priorisierung zukünftiger Entwicklungsrichtungen.
+* Grundlage für strategische Planung der nächsten Generation des Systems.
+* Fokus auf **Innovation, Skalierbarkeit und Community-Aufbau**.
