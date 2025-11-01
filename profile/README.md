@@ -31,9 +31,4 @@ Ob eigene Designs oder hochgeladene Modelle – wir drucken, verwalten und liefe
 
 ---
 
-## 🤝 Mitmachen & Folgen
-
-Dieses Projekt entwickelt sich stetig weiter.
-Wenn du 3D-Druck liebst, Software-Automatisierung spannend findest oder kreative Ideen einbringen möchtest, bleib dran!
-
 > **3D-PrintVerse – Where Ideas Take Shape.**
