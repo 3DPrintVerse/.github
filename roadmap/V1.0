@@ -67,6 +67,7 @@ Das MVP bildet die stabile technische Grundlage für zukünftige Automatisierung
 **Beschreibung:**
 
 * Datei-Upload (nur `.stl`) → Übergabe an File-Service → Speicherung in MinIO.
+* Prüfung auf Dateiformat, Dateigröße 
 * Erfassung von Material-, Farb- und Infill-Auswahl.
 * Erstellung eines **Prüfauftrags (Job)** für manuelle Validierung.
 * Admin kann Modell prüfen, Preis eingeben, Lieferzeit festlegen.
