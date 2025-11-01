@@ -1,117 +1,112 @@
-#🧭 Roadmap – Version 1.0 (MVP)
+# 🗺️ Roadmap – Version 1.0 (MVP)
 
-🧩 Meilenstein 1 – Core Foundation
+## 🎯 Ziel
 
-Ziel: Basisarchitektur und Systemgrundlage schaffen
-Beschreibung:
+Ein voll funktionsfähiger, aber manuell gesteuerter 3D-Druck-Shop mit klarer Systemstruktur und modularen Services.
 
-Einrichtung der zentralen Code-Struktur (Microservice-fähig).
+Das MVP bildet die stabile technische Grundlage für zukünftige Automatisierung.
 
-Grundlegende Kommunikation über RabbitMQ.
+---
 
-Zentrale User-Verwaltung & Authentifizierung (Login, Rollen, Tokens).
+### 🧩 **Meilenstein 1 – Core Foundation**
 
-Definition der API-Schnittstellen für alle weiteren Services.
+**Ziel:** Basisarchitektur und Systemgrundlage schaffen
+**Beschreibung:**
 
-Einrichtung des Object Storages (MinIO) und Datenbank(en).
+* Einrichtung der zentralen Code-Struktur (Microservice-fähig).
+* Grundlegende Kommunikation über **RabbitMQ**.
+* Zentrale **User-Verwaltung & Authentifizierung** (Login, Rollen, Tokens).
+* Definition der API-Schnittstellen für alle weiteren Services.
+* Einrichtung des Object Storages (**MinIO**) und Datenbank(en).
 
-🧩 Meilenstein 2 – File-Service
+---
 
-Ziel: Sichere und strukturierte Dateiablage implementieren
-Beschreibung:
+### 🧩 **Meilenstein 2 – File-Service**
 
-Aufbau des File-Service zur Speicherung und Abruf von Dateien.
+**Ziel:** Sichere und strukturierte Dateiablage implementieren
+**Beschreibung:**
 
-Upload von .stl-Dateien über API (mit Formatprüfung).
+* Aufbau des **File-Service** zur Speicherung und Abruf von Dateien.
+* Upload von `.stl`-Dateien über API (mit Formatprüfung).
+* Speicherung der Dateien im **MinIO Object Storage**.
+* Bereitstellung von File-URLs oder temporären Zugriffstoken für andere Services.
+* Integration in RabbitMQ-Eventsystem („UploadComplete“, „FileReady“).
 
-Speicherung der Dateien im MinIO Object Storage.
+---
 
-Bereitstellung von File-URLs oder temporären Zugriffstoken für andere Services.
+### 🧩 **Meilenstein 3 – Mail/Message Service**
 
-Integration in RabbitMQ-Eventsystem („UploadComplete“, „FileReady“).
+**Ziel:** Kommunikation automatisiert und modular abwickeln
+**Beschreibung:**
 
-🧩 Meilenstein 3 – Mail/Message Service
+* Aufbau des **Mail-Service** als eigenständigen Microservice.
+* Empfang von Nachrichten über **RabbitMQ** (z. B. „OrderStatusChanged“, „QuoteReady“).
+* Versand von E-Mails über SMTP oder API.
+* Template-System für wiederverwendbare E-Mails.
+* Logging und Fehlerrückmeldungen an Sender-Service.
+* Erweiterbar für zukünftige SMS-/Push-Integration.
 
-Ziel: Kommunikation automatisiert und modular abwickeln
-Beschreibung:
+---
 
-Aufbau des Mail-Service als eigenständigen Microservice.
+### 🧩 **Meilenstein 4 – Shop-Service (Katalogbereich)**
 
-Empfang von Nachrichten über RabbitMQ (z. B. „OrderStatusChanged“, „QuoteReady“).
+**Ziel:** Klassischer Onlineshop mit konfigurierbaren Produkten
+**Beschreibung:**
 
-Versand von E-Mails über SMTP oder API (z. B. SendGrid).
+* Anzeige von Produkten, Varianten, Farben, Materialien.
+* Warenkorb und Checkout-Prozess (inkl. Gastbestellung).
+* Bestelllogik mit Statusverwaltung (manuell gesteuert).
+* Anbindung an Mail-Service für Bestellbestätigung.
+* Integration von Admin-Dashboard-Funktion zum Setzen von Status und Preisen.
 
-Template-System für wiederverwendbare E-Mails.
+---
 
-Logging und Fehlerrückmeldungen an Sender-Service.
+### 🧩 **Meilenstein 5 – Upload-Service (Interaktive Plattform)**
 
-Erweiterbar für zukünftige SMS-/Push-Integration.
+**Ziel:** Upload eigener 3D-Modelle mit Prüf- und Angebotsprozess
+**Beschreibung:**
 
-🧩 Meilenstein 4 – Shop-Service (Katalogbereich)
+* Datei-Upload (nur `.stl`) → Übergabe an File-Service → Speicherung in MinIO.
+* Erfassung von Material-, Farb- und Infill-Auswahl.
+* Erstellung eines **Prüfauftrags (Job)** für manuelle Validierung.
+* Admin kann Modell prüfen, Preis eingeben, Lieferzeit festlegen.
+* Kunde erhält automatisch eine Angebots-Mail über Mail-Service.
+* Annahme/Ablehnung im Nutzerkonto → bei Annahme wird Bestellung erzeugt.
 
-Ziel: Klassischer Onlineshop mit konfigurierbaren Produkten
-Beschreibung:
+---
 
-Anzeige von Produkten, Varianten, Farben, Materialien.
+### 🧩 **Meilenstein 6 – Admin-Dashboard**
 
-Warenkorb und Checkout-Prozess (inkl. Gastbestellung).
+**Ziel:** Zentrale Verwaltungsoberfläche
+**Beschreibung:**
 
-Bestelllogik mit Statusverwaltung (manuell gesteuert).
+* Übersicht aller Aufträge, Uploads, Angebote, Produkte, Materialien.
+* Manuelle Statuspflege (Prüfung, Angebot, Produktion, Versand).
+* Direkte Interaktion mit Mail-Service (Auslösen von E-Mail-Events).
+* File-Viewer für hochgeladene Dateien (z. B. STL-Preview minimal).
+* Benutzerverwaltung (Rollen, Berechtigungen).
 
-Anbindung an Mail-Service für Bestellbestätigung.
+---
 
-Integration von Admin-Dashboard-Funktion zum Setzen von Status und Preisen.
+### 🧩 **Meilenstein 7 – Deployment & Stabilität**
 
-🧩 Meilenstein 5 – Upload-Service (Interaktive Plattform)
+**Ziel:** Produktionsreifes MVP-System
+**Beschreibung:**
 
-Ziel: Upload eigener 3D-Modelle mit Prüf- und Angebotsprozess
-Beschreibung:
+* Einrichtung von **Docker-Containern** pro Service.
+* Lokale und Cloud-Deployment-Strategie (z. B. Docker Compose oder K8s-ready).
+* Logging & Monitoring (Basis).
+* Testläufe: Upload, Angebot, Bestellung, Mailversand.
+* Vorbereitung auf V2 (erste Automatisierungs-Schnittstellen definieren).
 
-Datei-Upload (nur .stl) → Übergabe an File-Service → Speicherung in MinIO.
+---
 
-Erfassung von Material-, Farb- und Infill-Auswahl.
+### ✅ **Ergebnis von V1.0**
 
-Erstellung eines Prüfauftrags (Job) für manuelle Validierung.
+Ein funktionsfähiges System mit allen Kernprozessen:
 
-Admin kann Modell prüfen, Preis eingeben, Lieferzeit festlegen.
-
-Kunde erhält automatisch eine Angebots-Mail über Mail-Service.
-
-Annahme/Ablehnung im Nutzerkonto → bei Annahme wird Bestellung erzeugt.
-
-🧩 Meilenstein 6 – Admin-Dashboard
-
-Ziel: Zentrale Verwaltungsoberfläche
-Beschreibung:
-
-Übersicht aller Aufträge, Uploads, Angebote, Produkte, Materialien.
-
-Manuelle Statuspflege (Prüfung, Angebot, Produktion, Versand).
-
-Direkte Interaktion mit Mail-Service (Auslösen von E-Mail-Events).
-
-File-Viewer für hochgeladene Dateien (z. B. STL-Preview minimal).
-
-Benutzerverwaltung (Rollen, Berechtigungen).
-
-🧩 Meilenstein 7 – Deployment & Stabilität
-
-Ziel: Produktionsreifes MVP-System
-Beschreibung:
-
-Einrichtung von Docker-Containern pro Service.
-
-Lokale und Cloud-Deployment-Strategie (z. B. Docker Compose oder K8s-ready).
-
-Logging & Monitoring (Basis).
-
-Testläufe: Upload, Angebot, Bestellung, Mailversand.
-
-Vorbereitung auf V2 (erste Automatisierungs-Schnittstellen definieren).
-
-🔚 Ergebnis von V1.0
-
-Das System ist voll funktionsfähig, aber manuell gesteuert.
-Alle zentralen Microservices sind vorhanden, die Kommunikation über RabbitMQ funktioniert,
-und erste Kunden können reale Bestellungen und Uploads durchführen.
-Damit bildet V1.0 die stabile technische Grundlage für alle zukünftigen Automatisierungsschritte.
+* Shop & Upload-Plattform aktiv
+* File- und Mail-Services integriert
+* RabbitMQ-Kommunikation steht
+* Manuelle, aber stabile Prozesssteuerung
+* Basis für Automatisierung und Skalierung gelegt
