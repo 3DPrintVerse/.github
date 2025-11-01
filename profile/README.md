@@ -1,78 +1,39 @@
-# 3D-PrintVerse – MVP Architekturübersicht
+# 🌍 3D-PrintVerse
 
-## 🔍 Oberfläche (eine zentrale UI)
+Willkommen bei **3D-PrintVerse** – einer wachsenden Welt rund um den 3D-Druck.
 
-* **Public Shop (Gast möglich):** Katalog → Konfiguration (Material, Farbe, Infill) → Warenkorb → Checkout.
-* **Upload-Plattform (Login Pflicht):** Upload `.stl` → Konfiguration → "Zur Prüfung einreichen" → Angebot im Konto.
-* **Konto-Bereich:** Angebote annehmen/ablehnen, Bestellstatus, Rechnungen, Kommunikation.
-* **Admin-Dashboard:** Aufträge/Angebote, Dateien, Katalog, Materialien, SLAs/Zeitfenster, Mail-Templates.
+Unser Ziel ist es, den gesamten Prozess von der Idee bis zum fertigen 3D-gedruckten Produkt so einfach, transparent und zugänglich wie möglich zu machen. Dabei kombinieren wir eigene Modelle, individuelle Uploads und smarte Automatisierung zu einer Plattform, die mitwächst.
 
-## 📦 Backstage-Domänen (Services)
+---
 
-1. **Identity & Accounts** – Registrierung, Login, Rollen.
-2. **Catalog & Config** – Produkte, Varianten, Material-/Farboptionen.
-3. **Upload & Files** – Dateiupload, Format-Check (MVP: nur `.stl`), Ablage.
-4. **Quotation (Angebote)** – Manuelle Prüfung, Preisfindung, Gültigkeit, Annahme/Ablehnung.
-5. **Orders** – Bestellung (mehrere Dateien pro Order), Zahlung nach Annahme, Statuslauf.
-6. **Production (später)** – Slicing, Drucker-Queue, Auslastung.
-7. **Notifications** – E-Mails, Templates mit Platzhaltern.
-8. **Shipping (später)** – Versandlabel, Tracking.
-9. **Inventory (später)** – Materialien, Verfügbarkeiten.
-10. **Analytics/Reporting (später)** – Durchlaufzeiten, Kostenübersicht.
+## 🚀 Vision
 
-## 🔹 Zentrale Objektlogik
+**3D-PrintVerse** vereint Kreativität, Technologie und Automatisierung in einem intuitiven System.
+Ob eigene Designs oder hochgeladene Modelle – wir drucken, verwalten und liefern zuverlässig und nachhaltig.
 
-* **User** → hat **Orders**.
-* **Order** → umfasst 1..n **OrderItems** (Datei + Konfiguration).
-* **Quote** → entsteht aus Upload+Konfig, wird **zur Order**, wenn Kunde annimmt.
-* **Statuslauf:** Eingegangen → In Prüfung → Angebot bereit → In Produktion → QS → Versandt.
+---
 
-## 🔄 End-to-End-Flows
+## 🛠️ Kernfunktionen (überblicksartig)
 
-### A) Katalogkauf (MVP)
+* **Produktkatalog:** Vorgefertigte 3D-Modelle aus verschiedenen Kategorien.
+* **Individueller Upload:** Eigene Designs hochladen und drucken lassen.
+* **Konfiguration:** Materialien, Farben und Druckparameter einfach auswählen.
+* **Status & Transparenz:** Jeder Schritt nachvollziehbar – von Prüfung bis Versand.
+* **Schrittweise Automatisierung:** Prozesse wachsen mit dem System.
 
-1. Produkt wählen → konfigurieren → Gast/Login → Checkout.
-2. Admin setzt Status manuell (Produktion/QS/Versand).
-3. Kunde erhält automatische Mails bei Statuswechseln.
+---
 
-### B) Upload-Kauf (MVP)
+## 🌱 Entwicklungsphasen
 
-1. Login → `.stl` hochladen → konfigurieren → "Zur Prüfung".
-2. Admin/Prüfer checkt Datei & Machbarkeit, trägt **Preis + Lieferfenster** ein → System sendet **Angebots-Mail**.
-3. Kunde nimmt im Konto an → **Order entsteht**, Zahlung jetzt.
-4. Produktion manuell (G-Code, Druckstart, QS, Versand), Status manuell gepflegt → Auto-Mails.
+* **MVP:** Manuelle Abläufe, klare Prozesse, stabile Basis.
+* **V2–V3:** Automatisierte Prüfung, Preisbildung und Drucksteuerung.
+* **Zukunft:** Skalierbare Druckfarmen, Community-Funktionen und externe Schnittstellen.
 
-## 🔗 MVP vs. Wachstum
+---
 
-### MVP (manuell, klar, kontrolliert)
+## 🤝 Mitmachen & Folgen
 
-* Upload nur `.stl`.
-* Angebot & Preis **manuell**.
-* Statuswechsel **manuell**, Mails **automatisch**.
-* Produktion & G-Code **manuell**.
-* Zeitfenster **im Admin einstellbar**.
+Dieses Projekt entwickelt sich stetig weiter.
+Wenn du 3D-Druck liebst, Software-Automatisierung spannend findest oder kreative Ideen einbringen möchtest, bleib dran!
 
-### V2–V3 (gezielte Automatisierung)
-
-* **Auto-Validierung:** Geometrie-Checks.
-* **Auto-Pricing:** Regeln (Volumen/Druckzeit/Material).
-* **Auto-Status & Ereignisse:** Ereignisbasierte Workflows.
-* **Slicing-Service:** G-Code-Erzeugung.
-* **Printer-Queue:** Auftragszuweisung, Re-Print bei Fehler.
-* **Shipping-Service:** Label, Tracking.
-* **Inventory:** Materialverfügbarkeit.
-
-### Zukunft (skalierbar)
-
-* **Multi-Site / Farm-Routing.**
-* **APIs/Partner-Integrationen.**
-* **Community-/Marktplatz-Erweiterungen.**
-* **Technik-Ansicht optional.**
-
-## 🕵️ Prinzipien
-
-* **Ein UI, viele Services.**
-* **Schrittweise Automation.**
-* **Mensch bleibt eingreifbar.**
-* **Transparenz ohne Overload.**
-* **Skalierbarkeit mitgedacht.**
+> **3D-PrintVerse – Where Ideas Take Shape.**
