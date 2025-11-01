@@ -18,6 +18,7 @@ Das MVP bildet die stabile technische Grundlage für zukünftige Automatisierung
 * Zentrale **User-Verwaltung & Authentifizierung** (Login, Rollen, Tokens).
 * Definition der API-Schnittstellen für alle weiteren Services.
 * Einrichtung des Object Storages (**MinIO**) und Datenbank(en).
+* Erstellen eines Common-Repos für allgemeine Datenmodelle der einzelnen Services.
 
 ---
 
@@ -27,7 +28,6 @@ Das MVP bildet die stabile technische Grundlage für zukünftige Automatisierung
 **Beschreibung:**
 
 * Aufbau des **File-Service** zur Speicherung und Abruf von Dateien.
-* Upload von `.stl`-Dateien über API (mit Formatprüfung).
 * Speicherung der Dateien im **MinIO Object Storage**.
 * Bereitstellung von File-URLs oder temporären Zugriffstoken für andere Services.
 * Integration in RabbitMQ-Eventsystem („UploadComplete“, „FileReady“).
